@@ -1,5 +1,6 @@
 package starter.stepdefinitions;
 
+import cucumber.singleton.GVs;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import net.serenitybdd.screenplay.Actor;
@@ -16,5 +17,12 @@ public class ParameterDefinitions {
     @Before
     public void setTheStage() {
         OnStage.setTheStage(new OnlineCast());
+        String enviroment = null;
+        if (System.getProperty("environment") == null) {
+            enviroment = "default";
+        } else {
+            enviroment = System.getProperty("environment");
+        }
+        GVs.ENVIRONMENT = enviroment;
     }
 }
